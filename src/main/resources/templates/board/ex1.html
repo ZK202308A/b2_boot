@@ -23,11 +23,15 @@
 
 
   <ul>
-    <li th:each="str , status : ${list}"
+    <th:block th:each="str , status : ${list}">
+    <li
         th:class="'list ' + ${status.index %2 == 0? 'even':'odd' }">
       [[${str}]] - [[${status.index % 2 == 0 ?'EVEN':'ODD'}]]
     </li>
+    </th:block>
   </ul>
+
+  <a th:href="@{/index.html(name='홍 길 동', age='15', addr='seoul')}" > HOME</a>
 
 </body>
 </html>
