@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+  <h1>[[ ${msg} ]]</h1>
+
+  <style>
+    .list {
+      border: 1px solid black;
+      margin: 0.2em;
+    }
+    .odd {
+      background-color: blue;
+    }
+    .even {
+      background-color: red;
+    }
+  </style>
+
+
+  <ul>
+    <li th:each="str , status : ${list}"
+        th:class="'list ' + ${status.index %2 == 0? 'even':'odd' }">
+      [[${str}]] - [[${status.index % 2 == 0 ?'EVEN':'ODD'}]]
+    </li>
+  </ul>
+
+</body>
+</html>
