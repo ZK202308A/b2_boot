@@ -5,8 +5,21 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+//
+//CREATE DATABASE malldb;
+//
+//CREATE USER 'malldbuser'@'localhost' IDENTIFIED BY 'malldbuser';
+//CREATE USER 'malldbuser'@'%' IDENTIFIED BY 'malldbuser';
+//
+//GRANT ALL PRIVILEGES ON malldb.* TO 'malldbuser'@'localhost';
+//
+//GRANT ALL PRIVILEGES ON malldb.* TO 'malldbuser'@'%';
+
+//mariadb -u root -pzerock
+
+
 @SpringBootApplication
-@MapperScan(basePackages = {"org.zerock.b2.time.mapper"})
+@MapperScan(basePackages = {"org.zerock.b2.**.mapper"})
 public class B2Application {
 
     public static void main(String[] args) {
