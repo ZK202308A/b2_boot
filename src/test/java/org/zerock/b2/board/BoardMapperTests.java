@@ -63,6 +63,8 @@ public class BoardMapperTests {
     public void testList() {
 
         PageRequest pageRequest = new PageRequest();
+        pageRequest.setType("T");
+        pageRequest.setKeyword("11");
 
         for (BoardListDTO boardListDTO : mapper.listImage(pageRequest)) {
             log.info(boardListDTO);

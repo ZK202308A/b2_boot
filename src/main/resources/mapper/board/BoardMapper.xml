@@ -39,7 +39,7 @@
         replyCnt, fileName, viewCnt
         from
         tbl_board board left join tbl_board_attach attach on attach.bno = board.bno
-        where attach.ord = 0 or attach.ord is null
+        where (attach.ord = 0 or attach.ord is null)
 
         <include refid="search"></include>
 
