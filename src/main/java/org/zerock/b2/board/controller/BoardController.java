@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.b2.board.dto.BoardRegisterDTO;
 import org.zerock.b2.board.dto.SampledDTO;
+import org.zerock.b2.board.service.BoardService;
 import org.zerock.b2.board.util.UploadUtil;
 
 import java.util.List;
@@ -21,6 +22,8 @@ import java.util.List;
 public class BoardController {
 
     private final UploadUtil uploadUtil;
+
+    private final BoardService boardService;
 
     @PostMapping("register")
     public String register(
@@ -34,6 +37,7 @@ public class BoardController {
         boardRegisterDTO.setFileNames(uploadedFileNames);
 
         //서비스 등록
+        boardService.register(boardRegisterDTO);
 
         rttr.addFlashAttribute("bno", boardRegisterDTO.getBno());
 
