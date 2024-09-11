@@ -17,4 +17,33 @@
         insert into tbl_board_attach (bno,fileName,ord)
         values (#{bno}, #{fileName}, #{ord})
     </insert>
+
+    <sql id="search">
+        <foreach item="type" collection="arr" open="AND (" close=")" separator="OR">
+            <if test='type.equals("T")'>
+                title like concat('%', #{keyword}, '%')
+            </if>
+            <if test='type.equals("C")'>
+                content like concat('%', #{keyword}, '%')
+            </if>
+            <if test='type.equals("W")'>
+                writer like concat('%', #{keyword}, '%')
+            </if>
+        </foreach>
+    </sql>
+
+
+    <select id="listImage" resultType="">
+        select
+        board.bno, title, writer, regDate, modDate,
+        replyCnt, fileName
+        from
+        tbl_board board left join tbl_board_attach attach on attach.bno = board.bno
+        where attach.ord = 0 or attach.ord is null
+
+        <include refid="search"></include>
+
+        order by board.bno desc
+        limit #{skip}, #{size}
+    </select>
 </mapper>

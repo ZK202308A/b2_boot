@@ -5,24 +5,46 @@
 <div layout:fragment="content">
 <h1>Board Register</h1>
 
-    <form method="post" enctype="multipart/form-data">
+    <form id="form1" method="post" enctype="multipart/form-data">
 
-        <input type="text" name="title" value="Sample Title">
+        <input type="text" name="title" >
 
-        <input type="text" name="content" value="Sample Content">
+        <input type="text" name="content" >
 
-        <input type="text" name="writer" value="user00">
+        <input type="text" name="writer" >
 
-        <input type="text" name="tag" value="aaa,bbb,ccc,ddd">
+        <input type="text" name="tag" >
 
         <input type="file" name="images" multiple>
 
-        <button>CLICK</button>
+        <button class="submitBtn">CLICK</button>
     </form>
 
 </div>
 
 <script th:inline="javascript" layout:fragment="script">
 
+    const form1 = document.querySelector("#form1")
+
+    document.querySelector(".submitBtn").addEventListener("click", e => {
+
+        e.preventDefault();
+
+        form1.submit();
+
+        form1.reset();
+
+    }, false)
+
 
 </script>
+
+
+
+
+
+
+
+
+
+
