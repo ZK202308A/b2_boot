@@ -14,4 +14,7 @@ public interface BoardMapper {
                      @Param("ord")int ord);
 
     java.util.List<BoardListDTO> listImage(PageRequest pageRequest);
+
+    int count(PageRequest pageRequest);
+
 }

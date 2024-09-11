@@ -33,10 +33,10 @@
     </sql>
 
 
-    <select id="listImage" resultType="">
+    <select id="listImage" resultType="BoardListDTO">
         select
         board.bno, title, writer, regDate, modDate,
-        replyCnt, fileName
+        replyCnt, fileName, viewCnt
         from
         tbl_board board left join tbl_board_attach attach on attach.bno = board.bno
         where attach.ord = 0 or attach.ord is null
@@ -45,5 +45,10 @@
 
         order by board.bno desc
         limit #{skip}, #{size}
+    </select>
+
+    <select id="count" resultType="int">
+        select count(bno) from tbl_board where bno > 0
+        <include refid="search"></include>
     </select>
 </mapper>

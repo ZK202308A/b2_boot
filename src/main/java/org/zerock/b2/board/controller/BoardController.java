@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.b2.board.dto.BoardRegisterDTO;
+import org.zerock.b2.board.dto.PageRequest;
 import org.zerock.b2.board.dto.SampledDTO;
 import org.zerock.b2.board.service.BoardService;
 import org.zerock.b2.board.util.UploadUtil;
@@ -50,7 +51,9 @@ public class BoardController {
     }
 
     @GetMapping("list")
-    public void list(Model model) {
+    public void list(PageRequest pageRequest, Model model) {
+
+        model.addAttribute("result", boardService.list(pageRequest));
 
     }
 

@@ -4,6 +4,37 @@
 
 <div layout:fragment="content">
 
+    <div class="card">
+
+        <div class="card-header">
+
+        </div>
+
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td>BNO</td>
+                    <td>TITLE</td>
+                    <td>WRITER</td>
+                    <td>REGDATE</td>
+                    <td>VIEW</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="dto: ${result.list}">
+                    <td>[[${dto.bno}]]</td>
+                    <td>[[${dto.title}]]</td>
+                    <td>[[${dto.writer}]]</td>
+                    <td>[[${dto.regDate}]]</td>
+                    <td>[[${dto.viewCnt}]]</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
 
 
     <!-- Modal -->
@@ -31,6 +62,10 @@
 <script th:inline="javascript" layout:fragment="script">
 
     const bno = [[${bno}]]
+
+    const result = [[${result}]]
+
+    console.log(result)
 
     const myModal = new bootstrap.Modal(
         document.querySelector('#exampleModal'), null)
