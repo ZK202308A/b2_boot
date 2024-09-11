@@ -20,7 +20,8 @@
                 <input type="text" name="keyword" th:value="${pageRequest.keyword}">
                 <input type="hidden" name="page" value="1">
 
-                <button>Search</button>
+                <button class="btn btn-secondary searchBtn">Search</button>
+                <button class="btn btn-primary clearBtn">Clear</button>
 
             </form>
         </div>
@@ -115,5 +116,15 @@
         actionForm.querySelector('input[name="page"]').value = pageNum
         actionForm.submit()
     },false)
+
+    document.querySelector(".searchBtn").addEventListener("click", e=> {
+        e.preventDefault()
+        actionForm.submit()
+    })
+    document.querySelector(".clearBtn").addEventListener("click", e=> {
+        e.preventDefault();
+        self.location="/board/list"
+    })
+
 
 </script>
