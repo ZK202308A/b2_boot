@@ -16,8 +16,10 @@
                     <option value="TW" th:selected="${pageRequest.type == 'TW'}">제목혹은작성자</option>
                     <option value="TCW" th:selected="${pageRequest.type == 'TCW'}">제목혹은내용혹은작성자</option>
                 </select>
+
                 <input type="text" name="keyword" th:value="${pageRequest.keyword}">
                 <input type="hidden" name="page" value="1">
+
                 <button>Search</button>
 
             </form>
