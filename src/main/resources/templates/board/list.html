@@ -7,6 +7,18 @@
     <div class="card">
         <div class="card-header">
             <form id="actionForm" action="/board/list" method="get" >
+                <select name="type">
+                    <option value="">---</option>
+                    <option value="T" th:selected="${pageRequest.type == 'T'}" >제목</option>
+                    <option value="C" th:selected="${pageRequest.type == 'C'}">내용</option>
+                    <option value="W" th:selected="${pageRequest.type == 'W'}">작성자</option>
+                    <option value="TC" th:selected="${pageRequest.type == 'TC'}">제목혹은내용</option>
+                    <option value="TW" th:selected="${pageRequest.type == 'TW'}">제목혹은작성자</option>
+                    <option value="TCW" th:selected="${pageRequest.type == 'TCW'}">제목혹은내용혹은작성자</option>
+                </select>
+                <input type="text" name="keyword" th:value="${pageRequest.keyword}">
+                <input type="hidden" name="page" value="1">
+                <button>Search</button>
 
             </form>
         </div>
@@ -101,7 +113,7 @@
             return
         }
 
-        actionForm.innerHTML = `<input type='hidden' name='page' value=${pageNum}>`
+        actionForm.querySelector('input[name="page"]').value = pageNum
 
         actionForm.submit()
 
