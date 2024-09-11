@@ -12,4 +12,9 @@
         insert into tbl_board (title,content,writer,tag)
         values ( #{title}, #{content}, #{writer}, #{tag})
     </insert>
+
+    <insert id="insertAttach">
+        insert into tbl_board_attach (bno,fileName,ord)
+        values (#{bno}, #{fileName}, #{ord})
+    </insert>
 </mapper>

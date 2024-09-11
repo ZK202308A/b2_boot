@@ -25,7 +25,7 @@ create table tbl_board_attach
     fileName varchar(200)  not null,
     ord      int default 0 null,
     constraint fk_board
-        foreign key (bno) references bootdb2.tbl_board (bno)
+        foreign key (bno) references tbl_board (bno)
 );
 
 create index idx_board
@@ -42,7 +42,7 @@ create table tbl_reply
     regDate timestamp default current_timestamp() null,
     modDate timestamp default current_timestamp() null,
     constraint fk_board_reply
-        foreign key (bno) references bootdb2.tbl_board (bno)
+        foreign key (bno) references tbl_board (bno)
 );
 
 create index idx_board
