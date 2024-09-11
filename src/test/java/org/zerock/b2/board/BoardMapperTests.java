@@ -22,7 +22,7 @@ import java.util.stream.IntStream;
 
 @SpringBootTest
 @ActiveProfiles("dev")
-@Sql(scripts = {"classpath:sql/boardBefore.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+//@Sql(scripts = {"classpath:sql/boardBefore.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Log4j2
 
 public class BoardMapperTests {
@@ -30,15 +30,15 @@ public class BoardMapperTests {
     @Autowired(required = false)
     private BoardMapper mapper;
 
-    @BeforeEach
+    //@BeforeEach
     public void testInsert100() {
 
         IntStream.rangeClosed(1,100).forEach(j -> {
 
             BoardRegisterDTO dto = BoardRegisterDTO.builder()
-                    .title("title")
-                    .content("content")
-                    .writer("writer")
+                    .title("title" +j)
+                    .content("content" + j)
+                    .writer("writer" + (j %10))
                     .tag("aaa,bbb,ccc,ddd")
                     .fileNames(List.of(UUID.randomUUID()+".jpg",UUID.randomUUID()+".jpg"))
                     .build();
