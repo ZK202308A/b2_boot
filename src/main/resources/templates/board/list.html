@@ -50,13 +50,13 @@
             <div class="float-end">
                 <ul class="pagination flex-wrap">
 
-                    <li class="page-item"><a class="page-link" href="#">PREV</a></li>
+                    <li class="page-item" th:if="${result.prev}" ><a class="page-link" th:href="${result.startPage -1}">PREV</a></li>
 
                     <th:block th:each="i :${#numbers.sequence(result.startPage,result.endPage)} ">
                     <li class="page-item"><a class="page-link" th:href="${i}">[[${i}]]</a></li>
                     </th:block>
 
-                    <li class="page-item"><a class="page-link" href="#">NEXT</a></li>
+                    <li class="page-item" th:if="${result.next}"><a class="page-link" th:href="${result.endPage +1}">NEXT</a></li>
                 </ul>
             </div>
         </div>
@@ -106,20 +106,14 @@
 
         e.preventDefault()
         e.stopPropagation()
-
         const target = e.target
-
         const pageNum = target.getAttribute("href")
 
         if(!pageNum){
             return
         }
-
         actionForm.querySelector('input[name="page"]').value = pageNum
-
         actionForm.submit()
-
-
     },false)
 
 </script>
