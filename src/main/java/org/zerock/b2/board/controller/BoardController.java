@@ -29,9 +29,13 @@ public class BoardController {
 
         log.info("Registering board: " + boardRegisterDTO);
 
-        uploadUtil.upload(boardRegisterDTO.getImages());
+        List<String> uploadedFileNames = uploadUtil.upload(boardRegisterDTO.getImages());
 
-        rttr.addFlashAttribute("bno", 123L);
+        boardRegisterDTO.setFileNames(uploadedFileNames);
+
+        //서비스 등록
+
+        rttr.addFlashAttribute("bno", boardRegisterDTO.getBno());
 
         return "redirect:/board/list";
     }
