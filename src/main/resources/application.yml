@@ -15,6 +15,13 @@ spring:
       connection-timeout: 10000
   thymeleaf:
     cache: false
+  servlet:
+    multipart:
+      enabled: true
+      location: C:\\upload
+      max-file-size: 2MB
+      max-request-size: 20MB
+
 
 logging:
   level:
@@ -24,3 +31,6 @@ logging:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
 
+
+board:
+  upload: D:\\upload\\attach

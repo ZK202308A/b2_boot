@@ -5,8 +5,12 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.b2.board.dto.BoardRegisterDTO;
 import org.zerock.b2.board.dto.SampledDTO;
+import org.zerock.b2.board.util.UploadUtil;
 
 import java.util.List;
 
@@ -15,6 +19,33 @@ import java.util.List;
 @Log4j2
 @RequiredArgsConstructor
 public class BoardController {
+
+    private final UploadUtil uploadUtil;
+
+    @PostMapping("register")
+    public String register(
+            BoardRegisterDTO boardRegisterDTO,
+            RedirectAttributes rttr) {
+
+        log.info("Registering board: " + boardRegisterDTO);
+
+        uploadUtil.upload(boardRegisterDTO.getImages());
+
+        rttr.addFlashAttribute("bno", 123L);
+
+        return "redirect:/board/list";
+    }
+
+    @GetMapping("register")
+    public void register(){
+
+    }
+
+    @GetMapping("list")
+    public void list(Model model) {
+
+    }
+
 
     @GetMapping("ex1")
     public void ex1(Model model) {

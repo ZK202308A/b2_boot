@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basicLayout.html}">
+
+<div layout:fragment="content">
+<h1>Board Register</h1>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <input type="text" name="title" value="Sample Title">
+
+        <input type="text" name="content" value="Sample Content">
+
+        <input type="text" name="writer" value="user00">
+
+        <input type="text" name="tag" value="aaa,bbb,ccc,ddd">
+
+        <input type="file" name="images" multiple>
+
+        <button>CLICK</button>
+    </form>
+
+</div>
+
+<script th:inline="javascript" layout:fragment="script">
+
+
+</script>
