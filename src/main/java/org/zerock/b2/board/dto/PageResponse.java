@@ -34,6 +34,10 @@ public class PageResponse<E> {
             this.endPage = realEnd;
         }
 
+        if(total <= 0){
+            this.startPage = 0;
+        }
+
         this.prev = this.startPage > 1;
         this.next = this.endPage < realEnd;
     }
