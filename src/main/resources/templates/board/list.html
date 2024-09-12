@@ -40,7 +40,10 @@
                 <tbody>
                 <tr th:each="dto: ${result.list}">
                     <td>[[${dto.bno}]]</td>
-                    <td>[[${dto.title}]]</td>
+                    <td th:data-bno="${dto.bno}">
+                        <img th:if="${dto.fileName != null}" th:src="'http://localhost:8081/attach/s_' + ${dto.fileName}">
+                        [[${dto.title}]]
+                    </td>
                     <td>[[${dto.writer}]]</td>
                     <td>[[${#temporals.format(dto.regDate, 'yyyy-MM-dd') }]]</td>
                     <td>[[${dto.viewCnt}]]</td>
@@ -107,12 +110,14 @@
 
         e.preventDefault()
         e.stopPropagation()
+        
         const target = e.target
         const pageNum = target.getAttribute("href")
 
         if(!pageNum){
             return
         }
+        actionForm.setAttribute("action", "/board/list")
         actionForm.querySelector('input[name="page"]').value = pageNum
         actionForm.submit()
     },false)
@@ -125,6 +130,19 @@
         e.preventDefault();
         self.location="/board/list"
     })
+    document.querySelector(".table").addEventListener("click", e=> {
+        e.preventDefault()
+        e.stopPropagation()
+
+        const target = e.target
+        const bno = target.getAttribute("data-bno")
+        if(!bno) { return }
+
+        actionForm.setAttribute("action",`/board/read/${bno}`)
+        actionForm.submit()
+
+
+    }, false)
 
 
 </script>
