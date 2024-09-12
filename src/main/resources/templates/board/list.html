@@ -128,6 +128,12 @@
             return
         }
 
+
+        const tempForm = document.querySelector("#tempForm")
+        if(tempForm){
+            tempForm.remove()
+        }
+
         let formStr = `
             <form id="tempForm" action="/board/list">
                 <input type="hidden" name="page" value='${pageNum}'>`
@@ -149,7 +155,28 @@
 
     document.querySelector(".searchBtn").addEventListener("click", e=> {
         e.preventDefault()
-        actionForm.submit()
+
+        const tempForm = document.querySelector("#tempForm")
+        if(tempForm){
+            tempForm.remove()
+        }
+
+        let formStr = `
+            <form id="tempForm" action="/board/list">
+                <input type="hidden" name="page" value='1'>`
+
+        if(keywordInput.value && selectTag.value){
+            formStr += `<input type="hidden" name="type" value='${selectTag.value}'>`
+            formStr += `<input type="hidden" name="keyword" value='${keywordInput.value}'>`
+        }
+
+        formStr+= `</form>`
+
+        document.body.innerHTML += formStr
+
+        document.querySelector("#tempForm").submit()
+
+
     })
     document.querySelector(".clearBtn").addEventListener("click", e=> {
         e.preventDefault();
