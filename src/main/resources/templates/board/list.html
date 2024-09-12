@@ -190,8 +190,28 @@
         const bno = target.getAttribute("data-bno")
         if(!bno) { return }
 
-        actionForm.setAttribute("action",`/board/read/${bno}`)
-        actionForm.submit()
+        const tempForm = document.querySelector("#tempForm")
+        if(tempForm){
+            tempForm.remove()
+        }
+
+        let formStr = `
+            <form id="tempForm" action="/board/read/${bno}">
+                <input type="hidden" name="page" value='${page}'>`
+
+        if(type){
+            formStr += `<input type="hidden" name="type" value='${type}'>`
+        }
+        if(keyword){
+            formStr += `<input type="hidden" name="keyword" value='${keyword}'>`
+        }
+
+        formStr+= `</form>`
+
+        document.body.innerHTML += formStr
+
+        document.querySelector("#tempForm").submit()
+
 
 
     }, false)
