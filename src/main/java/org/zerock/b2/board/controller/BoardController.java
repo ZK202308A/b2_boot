@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.b2.board.dto.BoardReadDTO;
 import org.zerock.b2.board.dto.BoardRegisterDTO;
@@ -16,6 +13,7 @@ import org.zerock.b2.board.dto.SampledDTO;
 import org.zerock.b2.board.service.BoardService;
 import org.zerock.b2.board.util.UploadUtil;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,7 +59,22 @@ public class BoardController {
     }
 
     @GetMapping("read/{bno}")
-    public String read (@PathVariable("bno") Long bno, Model model) {
+    public String read (@CookieValue("view")String viewValue, @PathVariable("bno") Long bno, Model model) {
+
+        log.info("Reading board: " + bno);
+        log.info("viewValue: " + viewValue);
+
+        boolean existed = false;
+
+        if(viewValue != null) {
+            existed = Arrays.stream(viewValue.split("%")).anyMatch(str -> str.equals(bno+""));
+        }
+
+        if(!existed) {
+
+            log.info("View Count... update........................");
+
+        }
 
         Optional<BoardReadDTO> result = boardService.get(bno);
 
