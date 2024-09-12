@@ -59,7 +59,10 @@ public class BoardController {
     }
 
     @GetMapping("read/{bno}")
-    public String read (@CookieValue("view")String viewValue, @PathVariable("bno") Long bno, Model model) {
+    public String read (
+            @CookieValue(required = false, value = "view", defaultValue = "")
+            String viewValue,
+            @PathVariable("bno") Long bno, Model model) {
 
         log.info("Reading board: " + bno);
         log.info("viewValue: " + viewValue);

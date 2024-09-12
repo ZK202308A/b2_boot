@@ -1,4 +1,6 @@
 
+drop table if exists tbl_reply_favorite;
+
 drop table if exists tbl_reply;
 
 drop table if exists tbl_board_attach;
