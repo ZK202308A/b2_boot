@@ -22,7 +22,7 @@ import java.util.stream.IntStream;
 
 @SpringBootTest
 @ActiveProfiles("dev")
-//@Sql(scripts = {"classpath:sql/boardBefore.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = {"classpath:sql/boardBefore.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Log4j2
 
 public class BoardMapperTests {
@@ -30,7 +30,7 @@ public class BoardMapperTests {
     @Autowired(required = false)
     private BoardMapper mapper;
 
-    //@BeforeEach
+    @BeforeEach
     public void testInsert100() {
 
         IntStream.rangeClosed(1,100).forEach(j -> {

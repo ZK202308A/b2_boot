@@ -49,3 +49,26 @@ create index idx_board
     on tbl_reply (bno desc, rno asc);
 
 
+create table tbl_reply_favorite (
+    rno int not null,
+    mid varchar(50) not null,
+    regDate timestamp default now()
+);
+
+alter table tbl_reply_favorite
+    add constraint pk_reply_favorite
+        primary key (rno, mid)
+;
+
+
+select rno, min(reply), min(replyer), count(fno), sum(choice)
+from (
+         select reply.rno rno, reply, replyer, fa.rno fno,
+                if(fa.mid = 'r1',1,0) choice
+         from
+             tbl_reply reply left join tbl_reply_favorite fa on reply.rno = fa.rno
+         where
+             reply.bno = 100
+     ) r1
+group by rno
+;
