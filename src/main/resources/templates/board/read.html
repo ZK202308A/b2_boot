@@ -9,10 +9,39 @@
 
 <div layout:fragment="content">
 
+    [[ ${board} ]]
+
+    <div class="card">
+
+        <div class="card-header">
+            <button class="btn btn-secondary listBtn">LIST</button>
+        </div>
+
+        <div class="card-body">
+
+            <ul>
+                <img th:each="file:${board.fileNames}"
+                     th:src="'http://localhost:8081/attach/' + ${file} " >
+            </ul>
+
+        </div>
+
+    </div>
 
 </div>
 
 <script th:inline="javascript" layout:fragment="script">
+
+    const queryString = window.location.search
+
+    console.log("-------------------")
+    console.log(queryString)
+
+    document.querySelector(".listBtn").addEventListener("click", e=> {
+
+        window.location=`/board/list${queryString}`
+
+    },false)
 
 
 </script>

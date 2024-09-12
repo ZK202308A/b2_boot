@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.b2.board.dto.BoardReadDTO;
 import org.zerock.b2.board.dto.BoardRegisterDTO;
 import org.zerock.b2.board.dto.PageRequest;
 import org.zerock.b2.board.dto.SampledDTO;
@@ -16,6 +17,7 @@ import org.zerock.b2.board.service.BoardService;
 import org.zerock.b2.board.util.UploadUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/board")
@@ -60,6 +62,12 @@ public class BoardController {
 
     @GetMapping("read/{bno}")
     public String read (@PathVariable("bno") Long bno, Model model) {
+
+        Optional<BoardReadDTO> result = boardService.get(bno);
+
+        BoardReadDTO boardReadDTO = result.orElseThrow();
+
+        model.addAttribute("board", boardReadDTO);
 
         return "/board/read";
     }
