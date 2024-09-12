@@ -85,6 +85,7 @@
         </div>
     </div>
 
+    <div id="tempDiv"></div>
 
 </div>
 
@@ -129,11 +130,6 @@
         }
 
 
-        const tempForm = document.querySelector("#tempForm")
-        if(tempForm){
-            tempForm.remove()
-        }
-
         let formStr = `
             <form id="tempForm" action="/board/list">
                 <input type="hidden" name="page" value='${pageNum}'>`
@@ -147,7 +143,7 @@
 
         formStr+= `</form>`
 
-        document.body.innerHTML += formStr
+        document.querySelector("#tempDiv").innerHTML = formStr
 
         document.querySelector("#tempForm").submit()
 
@@ -156,10 +152,7 @@
     document.querySelector(".searchBtn").addEventListener("click", e=> {
         e.preventDefault()
 
-        const tempForm = document.querySelector("#tempForm")
-        if(tempForm){
-            tempForm.remove()
-        }
+
 
         let formStr = `
             <form id="tempForm" action="/board/list">
@@ -172,7 +165,7 @@
 
         formStr+= `</form>`
 
-        document.body.innerHTML += formStr
+        document.querySelector("#tempDiv").innerHTML = formStr
 
         document.querySelector("#tempForm").submit()
 
@@ -190,10 +183,6 @@
         const bno = target.getAttribute("data-bno")
         if(!bno) { return }
 
-        const tempForm = document.querySelector("#tempForm")
-        if(tempForm){
-            tempForm.remove()
-        }
 
         let formStr = `
             <form id="tempForm" action="/board/read/${bno}">
@@ -208,7 +197,7 @@
 
         formStr+= `</form>`
 
-        document.body.innerHTML += formStr
+        document.querySelector("#tempDiv").innerHTML = formStr
 
         document.querySelector("#tempForm").submit()
 
