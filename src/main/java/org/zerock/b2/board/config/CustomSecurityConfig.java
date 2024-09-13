@@ -42,6 +42,14 @@ public class CustomSecurityConfig {
            config.tokenRepository(persistentTokenRepository());
         });
 
+        http.logout(config -> {
+
+        });
+
+        http.oauth2Login(config -> {
+
+        });
+
         return http.build();
     }
 

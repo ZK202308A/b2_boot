@@ -21,6 +21,24 @@ spring:
       location: C:\\upload
       max-file-size: 2MB
       max-request-size: 20MB
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id:
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            client-authentication-method: POST
+            authorization-grant-type: authorization_code
+            scope: profile_nickname, account_email, profile_image
+            client-name: Kakao
+            client-secret:
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
 
 
 logging:
@@ -40,3 +58,5 @@ mybatis:
 
 board:
   upload: D:\\upload\\attach
+
+
