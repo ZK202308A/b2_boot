@@ -11,7 +11,8 @@
 
         <input type="text" name="content" >
 
-        <input type="text" name="writer" >
+        <input type="text" name="writer"
+        th:value="${#authentication.principal.username}" readonly>
 
         <input type="text" name="tag" >
 
@@ -23,6 +24,10 @@
 </div>
 
 <script th:inline="javascript" layout:fragment="script">
+
+    const auth = [[ ${#authentication.principal} ]]
+
+    console.log(auth)
 
     const form1 = document.querySelector("#form1")
 

@@ -30,6 +30,8 @@ logging:
     org:
       apache:
         ibatis: debug
+      springframework:
+        security: trace
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: org.zerock.b2.**.dto

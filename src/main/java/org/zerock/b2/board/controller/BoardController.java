@@ -2,6 +2,7 @@ package org.zerock.b2.board.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping("register")
     public String register(
             BoardRegisterDTO boardRegisterDTO,
@@ -46,11 +48,13 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("register")
     public void register(){
 
     }
 
+    @PreAuthorize("permitAll()")
     @GetMapping("list")
     public void list(PageRequest pageRequest, Model model) {
 
@@ -58,6 +62,7 @@ public class BoardController {
 
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("read/{bno}")
     public String read (
             @CookieValue(required = false, value = "view", defaultValue = "")
