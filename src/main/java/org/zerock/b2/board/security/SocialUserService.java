@@ -8,8 +8,10 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Component;
+import org.zerock.b2.board.dto.MemberDTO;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 @Component
 @Log4j2
@@ -48,6 +50,17 @@ public class SocialUserService extends DefaultOAuth2UserService {
 
         log.info("email: " + email);
 
-        return oAuth2User;
+        log.info("-----------------------------------------------------");
+        log.info("-----------------------------------------------------");
+        log.info("-----------------------------------------------------");
+
+        MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setMid(email);
+        memberDTO.setMpw("$2a$12$zMtBjQl9HZR7V8oQfyWbdOoqJfiz9MkMgCPtHXUBNI7sn5uCApz0i");
+        memberDTO.setRoles(List.of("USER"));
+        memberDTO.setProps(paramMap);
+
+
+        return memberDTO;
     }
 }
