@@ -32,7 +32,7 @@ spring:
             authorization-grant-type: authorization_code
             scope: profile_nickname, account_email, profile_image
             client-name: Kakao
-            client-secret: 4rMf4uaLp3npqy1cTs462csC3p3TKAIV
+            client-secret: hyuFiFpRCfU2290FYGGZaPLaUTPm9EQQ
 
         provider:
           kakao:
